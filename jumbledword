@@ -1,0 +1,46 @@
+
+from tkinter import *
+import random
+from tkinter import messagebox
+answers=["python","java","swift","canada","india","kind","project","coffee"]
+words=["nopyth","avaj","ftswi","nadaca","nidia","dink","jectpro","ffcoee"]
+num=random.randrange(0,8,1)
+def res():# isay top per is liyyay rukha if the ans is correct and it reset the word
+    global words,answers,num
+    num=random.randrange(0,5,1)
+    lbl.config(text=words[num]) # when we click on this button it will show other random words
+    e1.delete(0,END)
+def m(): # for label showing
+    global words,answers,num
+    lbl.config(text=words[num]) # values defined above
+def checkans():
+    global words,answers,num
+    var=e1.get()
+    if var==answers[num]:
+        messagebox.showinfo("success","this is a correct ans")
+        res()   # second fn forn aay
+    else:
+        messagebox.showerror("error","this is not correct")
+        e1.delete(0,END)
+
+
+
+
+root=Tk()
+root.geometry("200x30")
+root.title("JUMBLED WORD GAME ")
+root.configure(background="black")
+lbl=Label(root,font=("verdana",18),bg="black",fg="white")
+lbl.pack(pady=30,ipady=10,ipadx=10)
+
+e1=Entry(root,font=("verdana",16))
+e1.pack(ipady=5,ipadx=5)
+btncheck=Button(root,text="check",font=("comic sans ms",16),width=16,bg="grey",fg="green",relief=GROOVE,command=checkans)
+btncheck.pack(pady=40,padx=10)
+btnreset=Button(root,text="reset",font=("comic sans ms",16),width=16,bg="grey",fg="pink",relief=GROOVE,command=res)
+btnreset.pack(pady=10,padx=10)
+m()
+
+
+root.mainloop()
+# internal padding is the distance between label and background of the buttton
